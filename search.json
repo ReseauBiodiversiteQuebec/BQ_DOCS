@@ -1,0 +1,898 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site",
+    "crumbs": [
+      "À propos",
+      "About"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_intro.html",
+    "href": "Rcoleo_intro.html",
+    "title": "Paquet rcoleo",
+    "section": "",
+    "text": "Repo Github",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Paquet rcoleo"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_intro.html#installer-le-paquet-rcoleo",
+    "href": "Rcoleo_intro.html#installer-le-paquet-rcoleo",
+    "title": "Paquet rcoleo",
+    "section": "Installer le paquet rcoleo",
+    "text": "Installer le paquet rcoleo\ndevtools::install_github(\"ReseauBiodiversiteQuebec/rcoleo\")",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Paquet rcoleo"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_intro.html#sauthentifier-auprès-de-lapi",
+    "href": "Rcoleo_intro.html#sauthentifier-auprès-de-lapi",
+    "title": "Paquet rcoleo",
+    "section": "S’authentifier auprès de l’API",
+    "text": "S’authentifier auprès de l’API\nIl est fortement recommandé d’enregistrer le jeton d’accès directement en tant que Environment variable afin de s’assurer qu’il ne soit pas visible ou transmis avec votre code à un autre utilisateur. Ce jeton d’accès est unique et révocable.\nfile.edit(\"~/.Renviron\")\ncette linge va ouvrir un ficher text dans votre Rstudio. Ajoutez à ce ficher la ligne suivante:\nRCOLEO_TOKEN=7f8df438e1be96a18436e9dab5d97d68ed0e0441d9b68f59e0ce631b2919f3aa\n(utilizez votre propre token ici)\nLe jeton d’accès est un exemple ici et n’est aucunement valide.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Paquet rcoleo"
+    ]
+  },
+  {
+    "objectID": "Rweb_connect.html",
+    "href": "Rweb_connect.html",
+    "title": "Connexion au serveur Rweb",
+    "section": "",
+    "text": "Bonne question !",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Connexion au serveur Rweb"
+    ]
+  },
+  {
+    "objectID": "Coleo_taxonomie.html",
+    "href": "Coleo_taxonomie.html",
+    "title": "Taxonomie",
+    "section": "",
+    "text": "Repo Github",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Taxonomie"
+    ]
+  },
+  {
+    "objectID": "Coleo_taxonomie.html#features",
+    "href": "Coleo_taxonomie.html#features",
+    "title": "Taxonomie",
+    "section": "Features",
+    "text": "Features\n\nRaw observed taxonomic entry stored as-is. Minimal maintenance of stored taxon database and taxon entries overhead operation (validation, correction) is allowed by storing raw taxon values as-is. All corrected and validated referenced taxonomic entries are found through fuzzy matching and stored independently.\nTaxon accepted for all ranks : Observation may be be related to an organism identified at many different levels ie. species, genus, family depending on the type of survey. All taxonomic entries may be ingested into the observed taxon table regardless of their rank and will be related to their referenced taxons.\nFuzzy matching : Raw taxon are matched to entries in reference taxonomic databases using fuzzy matching, thus correcting for orthographic or casing error.\nUnresolved entry : If a raw taxonomic entry cannot be matched, closest taxonomic parent reference will be obtained and related if possible.\nMultiple and conflicting taxonomic sources : Raw taxons are matched to their referenced counterparts from multiple taxonomic databases. These matches allows for use of specialized databases or conflicting ones. They are stored without priority, making it possible to reference a raw taxon and related observation through any names obtained through conflicting reference database.\nParent-children taxonomic relationship : Search taxons and related observations through parent taxons possible through stored reference taxons for parents and relationship to raw entry. ie. Parent taxon class Aves can be related to all children species taxon entries Cyanocitta cristata, Falco peregrinus, etc.\nRevised taxon and valid synonym : Raw taxon whose valid reference named has changed are matched to both deprecated references and valid ones, making it possible to search raw taxons and related observation and event through either one.\nUpdating and change in reference taxonomic database : Updates to the validity of a taxonomic entry is possible through periodic update of references obtained from raw taxon entries. Raw taxons are thus stored and maintained as described in original sources and surveys\nVernacular names : A list of vernacular names (fr & en) are found for each reference taxons (parents, synonyms) related to a raw taxon and for a number of reference vernacular databases.\nComplex observation : When the taxon related to an observation is complex, such as multiple organism are identified for the same observation(Species 1 | Species 2 | Species 3), a single observed taxonomic entry is injected as such. References will be obtained for each single organism listed by the complex and all related parents. References matched from complex observed taxons are identified as such and can then be included or discarded from queries performed by the user. Common parent taxon are identified as such and can be used to query complex observed taxons.",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Taxonomie"
+    ]
+  },
+  {
+    "objectID": "Coleo_taxonomie.html#principles",
+    "href": "Coleo_taxonomie.html#principles",
+    "title": "Taxonomie",
+    "section": "Principles",
+    "text": "Principles\n\nRaw observed taxons are stored as is as rows in table taxa_obs, no orthographic correction nor validation of values is required. It’s primary key id_taxa_obs is used to be related to tables\nA list of reference taxons (parent, valid synonym) are found for each raw taxon and for a number of taxonomic reference databases through fuzzy match based on the Global names and GBIF taxononomic backbone API. All reference taxons are stored in table taxa_ref and may be related to observed raw taxa_obs rows through taxa_obs_ref_lookup lookup table.\nA list of vernacular names (fr & en) are found for each reference taxons (parents, synonyms) related to a raw taxons and for a number of reference vernacular databases through the GBIF taxononomic backbone API. All vernacular taxons are stored in table taxa_vernacular and may be related to observe taxa_obs rows through taxa_obs_vernacular_lookup lookup table.",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Taxonomie"
+    ]
+  },
+  {
+    "objectID": "Coleo_taxonomie.html#common-workflows-and-procedures",
+    "href": "Coleo_taxonomie.html#common-workflows-and-procedures",
+    "title": "Taxonomie",
+    "section": "Common workflows and procedures",
+    "text": "Common workflows and procedures\n\nIngesting entries with related taxa attributes\nExample. Insert rows in obs_species related to taxa attributes\n\nProcess summary\n\nUser : Inject raw species observation rows in TABLE obs_species\nAuto : Trigger is called on inject.\n\nRow in TABLE taxa_obs is injected from taxa_name in obs_species\nField id_tax_obs in TABLE obs_species is updated before injection\nFUNCTION match_taxa_sources(taxa_name) is called to obtain related reference taxonomy entries (synonyms, parents)\nReference taxonomic entries are injected into TABLE taxa_ref\nCorrespondence between raw observed taxon and related reference taxons are injected into TABLE taxa_obs_ref_lookup\n\n\n\n\nSQL Command\nINSERT INTO obs_species (taxa_name, variable, value, observation_id)\nVALUES (...)\n\n\n\nList species related to observations\n\nProcess summary\n\nUser : Query required observations using filters (site, campaign if required)\nUser : Join api.taxa using the id_taxa_obs foreign key\n\n\n\nSQL Command examples\nObserved taxons using api.taxa attributes (scientific name, group name, vernacular names, rank, etc).\nSELECT taxa.*\nFROM api.taxa\nList observed species using api.taxa attributes (scientific name, group name, vernacular names, rank, etc)\nSELECT taxa.*\nFROM api.taxa WHERE rank = 'species'\nListing observed species by site, site_type, campaigns, cells with api.taxa attributes (scientific name, group name, vernacular names, rank, etc).\nselect * from api.taxa_surveyed\nwhere site_type = 'forestier' -- May also use : site_id, site_code, site_type, cell_code, campaign_id, campaign_type\nand rank = 'species'\nListing observed richness for by site, site_type, campaigns, cells (etc). This function returns all distinct valid taxa name that is not a parent of any observed taxa, thus where all taxa equals 1 organism, regardless of their rank if they satisfy previous criterias.\n-- api.taxa_richness(cell_id integer, cell_code text, site_id integer, site_code text, site_type text, campaign_id integer, campaign_type text)\nselect api.taxa_richness(NULL, NULL, NULL, NULL, 'forestier', NULL, NULL)",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Taxonomie"
+    ]
+  },
+  {
+    "objectID": "Coleo_taxonomie.html#important-notes",
+    "href": "Coleo_taxonomie.html#important-notes",
+    "title": "Taxonomie",
+    "section": "IMPORTANT NOTES",
+    "text": "IMPORTANT NOTES\n\nALTER TABLE public.obs_species DROP CONSTRAINT obs_species_taxa_name_fkey;\n  select *                                     \n  from taxa_obs\n  where id not in (\n  select id_taxa_obs from taxa_obs_ref_lookup)\n  ;\n    id  | scientific_name |          created_at          \n  ------+-----------------+------------------------------\n   2380 | sphaigne verte  | 2022-04-07 17:14:09.45303-04\n   2658 | pellie sp.      | 2022-04-07 17:14:09.45303-04\n   5934 | Maccafertium    | 2022-08-17 18:06:51.7358-04\n   5986 | Caecidota       | 2022-08-17 18:06:51.7358-04\n   6277 | Callophrus      | 2022-08-17 18:06:51.7358-04\n  (5 rows)\nNo index on columns from cells, sites, campaigns, etc.\nNo complex are listed through API endpoints. However, their closest common parents are.\nTODO\n\nWhat’s up with l’aulne rugueux\napi.taxa disctint on id_taxa_obs ? Grouper les sources conflictuelles dans le json\nBezzia|Palpomyia is observed, should not because, to be fixed",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Taxonomie"
+    ]
+  },
+  {
+    "objectID": "Coleo_API_endpoints.html",
+    "href": "Coleo_API_endpoints.html",
+    "title": "Endpoints & CRON jobs",
+    "section": "",
+    "text": "Repo Github",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Endpoints & CRON jobs"
+    ]
+  },
+  {
+    "objectID": "Coleo_API_endpoints.html#api-endpoints",
+    "href": "Coleo_API_endpoints.html#api-endpoints",
+    "title": "Endpoints & CRON jobs",
+    "section": "API endpoints",
+    "text": "API endpoints\nFUNCTION api.taxa_abundance(group_by_column text, cell_id_filter integer, cell_code_filter text, site_id_filter integer, site_code_filter text, site_type_filter text, campaign_id_filter integer, campaign_type_filter text)\nReturns a table with the sum of observation values from obs_species and obs_edna for each taxon, grouped by the column name specified as parameter and filtered by column values. The column names accepted can be any of : site_id, site_type, site_code, campaign_id, campaign_type, cell_id, cell_code.\nAll parameters are optionals and can be used in any combination. If no parameter is specified, the function will return the total abundance.\nFUNCTION api.taxa_abundance_year\nReturns the same table, expect the abundance is returned for each year of the campaigns.\nFUNCTION api.taxa_richness(group_by_column text, cell_id_filter integer, cell_code_filter text, site_id_filter integer, site_code_filter text, site_type_filter text, campaign_id_filter integer, campaign_type_filter text)\nReturns a table with the number of validated and unique taxa, based on the tip of the branch method, from both obs_species and obs_edna grouped by the column name specified as parameter and filtered by column values. The column names accepted can be any of : site_id, site_type, site_code, campaign_id, campaign_type, cell_id, cell_code.\nAll parameters are optionals and can be used in any combination. If no parameter is specified, the function will return the total richness.\nFUNCTION api.taxa_richness_year\nReturns the same table, expect the richness is returned for each year of the campaigns.",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Endpoints & CRON jobs"
+    ]
+  },
+  {
+    "objectID": "Coleo_API_endpoints.html#cron-jobs",
+    "href": "Coleo_API_endpoints.html#cron-jobs",
+    "title": "Endpoints & CRON jobs",
+    "section": "Cron jobs",
+    "text": "Cron jobs\nCertain tasks are executed periodically by the server. These tasks are called cron jobs and scripts are defined in the ./cron/ folder. These tasks are:\nScripts must be executed under the postgres user.\n\n./cron/refresh_taxa.sql: Refreshes the taxa_ref table, the taxa_vernacular table, and the api.taxa materialized view. This script is executed every Friday at 9:00 PM.\n\n\nEditing cron jobs for postgres user\nFirst, make sure the postgres home directory contains the latest version of the Coleo_DB repository located in /home/postgres/Coleo_DB . If not, run the following command:\nsudo -u postgres git -C /home/postgres/Coleo_DB pull\nTo edit the cron jobs for the postgres user, run the following command:\nsudo crontab -u postgres -e\nThis will open the crontab file for the postgres user. Copy the lines from the ./cron/crontab file and paste them at the end of the file. Save the file and exit.",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Endpoints & CRON jobs"
+    ]
+  },
+  {
+    "objectID": "Ratlas_intro.html",
+    "href": "Ratlas_intro.html",
+    "title": "Paquet ratlas",
+    "section": "",
+    "text": "ratlas est un paquet R permettant l’accès et l’analyse des données de biodiversité aggrégée par le réseau d’observation de la biodiversité du Québec.\nCe paquet R expose les services RESTFull de l’API de Atlas. Atlas est un système d’information sur la biodiversité du Québec développé par le laboratoire d’Écologie Intégrative de l’Université de Sherbrooke.\nLa documentation complète du package est disponible ici.\nPour débuter avec le package ratlas nous vous recommendons l’article pour débuter par le tutoriel pour le téléchargement d’observations.\n\n\ndevtools::install_github(\"ReseauBiodiversiteQuebec/ratlas\")\n\n\n\nUn jeton d’accès vous sera mis à disposition par l’équipe de développeur de Atlas. Veuillez les contacter pour en obtenir un de manière sécurisée.\nIl est fortement recommandé de mettre en cache votre jeton d’accès (jeton d’accès stocké dans un fichier rds) afin de s’assurer qu’il ne soit pas visible ou transmis avec votre code à un autre utilisateur. Ce jeton d’accès est unique et révocable.\nPour cela, il vous suffit simplement d’enregistrer le jeton d’accès directement en tant que Environment variable\n\n\nfile.edit(\"~/.Renviron\")\nCette ligne va ouvrir un ficher text dans votre Rstudio. Rajoutez dans ce ficher un linge comme la suivante:\n# utilizez votre propre token ici\n\nATLAS_API_TOKEN=7f8df438e1be96a18436e9dab5d97d68ed0e0441d9b68f59e0ce631b2919f3aa\nLe jeton d’accès est un exemple ici et n’est aucunement valide.\n\n\n\nVous pouvez également passer votre jeton d’accès en créant une variable d’environnement nommée ATLAS_API_TOKEN au niveau de l’OS ou de l’environnement de dévelopement.\n\n\n\n\n\n\nSi vous obtenez une erreur 401, c’est que votre jeton d’accès n’est pas valide. Veuillez vous assurer que vous avez bien copié le jeton d’accès et que vous l’avez bien mis en cache dans votre environnement de développement.\nPour valider que votre jeton d’accès est bien en cache, vous pouvez utiliser la fonction Sys.getenv(\"ATLAS_API_TOKEN\") qui devrait retourner votre jeton d’accès.\n\n\n\nErreur possible lors de la récupération (GET) de données via une machine Linux (ici Ubuntu). L’erreur provient du package curl. Un correctif est disponible depuis la version 7.87.0 du package qui elle est disponible depuis la version 23.02 de Ubuntu.",
+    "crumbs": [
+      "Packages",
+      "ratlas",
+      "Paquet ratlas"
+    ]
+  },
+  {
+    "objectID": "Ratlas_intro.html#installer-le-paquet-ratlas",
+    "href": "Ratlas_intro.html#installer-le-paquet-ratlas",
+    "title": "Paquet ratlas",
+    "section": "",
+    "text": "devtools::install_github(\"ReseauBiodiversiteQuebec/ratlas\")",
+    "crumbs": [
+      "Packages",
+      "ratlas",
+      "Paquet ratlas"
+    ]
+  },
+  {
+    "objectID": "Ratlas_intro.html#sauthentifier-auprès-de-lapi",
+    "href": "Ratlas_intro.html#sauthentifier-auprès-de-lapi",
+    "title": "Paquet ratlas",
+    "section": "",
+    "text": "Un jeton d’accès vous sera mis à disposition par l’équipe de développeur de Atlas. Veuillez les contacter pour en obtenir un de manière sécurisée.\nIl est fortement recommandé de mettre en cache votre jeton d’accès (jeton d’accès stocké dans un fichier rds) afin de s’assurer qu’il ne soit pas visible ou transmis avec votre code à un autre utilisateur. Ce jeton d’accès est unique et révocable.\nPour cela, il vous suffit simplement d’enregistrer le jeton d’accès directement en tant que Environment variable\n\n\nfile.edit(\"~/.Renviron\")\nCette ligne va ouvrir un ficher text dans votre Rstudio. Rajoutez dans ce ficher un linge comme la suivante:\n# utilizez votre propre token ici\n\nATLAS_API_TOKEN=7f8df438e1be96a18436e9dab5d97d68ed0e0441d9b68f59e0ce631b2919f3aa\nLe jeton d’accès est un exemple ici et n’est aucunement valide.\n\n\n\nVous pouvez également passer votre jeton d’accès en créant une variable d’environnement nommée ATLAS_API_TOKEN au niveau de l’OS ou de l’environnement de dévelopement.",
+    "crumbs": [
+      "Packages",
+      "ratlas",
+      "Paquet ratlas"
+    ]
+  },
+  {
+    "objectID": "Ratlas_intro.html#troubleshooting",
+    "href": "Ratlas_intro.html#troubleshooting",
+    "title": "Paquet ratlas",
+    "section": "",
+    "text": "Si vous obtenez une erreur 401, c’est que votre jeton d’accès n’est pas valide. Veuillez vous assurer que vous avez bien copié le jeton d’accès et que vous l’avez bien mis en cache dans votre environnement de développement.\nPour valider que votre jeton d’accès est bien en cache, vous pouvez utiliser la fonction Sys.getenv(\"ATLAS_API_TOKEN\") qui devrait retourner votre jeton d’accès.\n\n\n\nErreur possible lors de la récupération (GET) de données via une machine Linux (ici Ubuntu). L’erreur provient du package curl. Un correctif est disponible depuis la version 7.87.0 du package qui elle est disponible depuis la version 23.02 de Ubuntu.",
+    "crumbs": [
+      "Packages",
+      "ratlas",
+      "Paquet ratlas"
+    ]
+  },
+  {
+    "objectID": "Coleo_intro.html",
+    "href": "Coleo_intro.html",
+    "title": "Base de données Coleo",
+    "section": "",
+    "text": "Petit speech de Victor pour nous expliquer qu’est-ce qu’est Coleo ?\nListe des repos Github associés: Coleo_DB",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Base de données Coleo"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html",
+    "href": "Bdqc_taxa_intro.html",
+    "title": "bdqc_taxa",
+    "section": "",
+    "text": "Repo Github\nbdqc_taxa is a python package that interface with Biodiversité Québec’s database to query reference taxa sources, parse their return and generate records.",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html#installation",
+    "href": "Bdqc_taxa_intro.html#installation",
+    "title": "bdqc_taxa",
+    "section": "Installation",
+    "text": "Installation\nFor installation in postgres server\nInstallation must be performed as postgres user :\nsudo su postgres\npip install ...\nFor a new installation\npip install git+https://github.com/ReseauBiodiversiteQuebec/bdqc_taxa#egg=bdqc_taxa\nFor an upgrade\npip install --upgrade git+https://github.com/ReseauBiodiversiteQuebec/bdqc_taxa#egg=bdqc_taxa",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html#usage",
+    "href": "Bdqc_taxa_intro.html#usage",
+    "title": "bdqc_taxa",
+    "section": "Usage",
+    "text": "Usage\n\nMatch a scientific name against all sources\nThe taxa_ref module is used to query the reference taxa sources and parse their return using fuzzy matching.\nFor a specific match, the module provides functions to return scientific name, taxonomic hierarchy, vernacular name and source of the match. For each source, valid scientific names are returned as well as synonyms when corresponding to the matched input name. Parent taxa are returned as well as children taxa when corresponding to the matched input name.\n\n\nExample\nQuery for all sources using a scientific name can be done with the following method. This should fits most use cases.\nfrom bdqc_taxa.taxa_ref import TaxaRef\n\nresults = TaxaRef.from_all_sources('Canis lupus')\n\n\nComplex names\nWhen the taxon related to an observation is complex, such as multiple organism are identified for the same observation(Species 1 | Species 2 | Species 3), a single observed taxonomic entry is injected as such. References will be obtained for each single organism listed by the complex and all related parents. References matched from complex observed taxons are identified as such and can then be included or discarded from queries performed by the user. Common parent taxon are identified as such and can be used to query complex observed taxons.\n\n\nConflicts\nCertain scientific names corresponds to different organism within two entirely different branches of the tree of life. For example, the scientific name Salix corresponds to the genus of willows in the plant kingdom and to a genus of tunicates in the animal kingdom. To avoid matching for such case, the user can specify a parent taxa name to restrict the results to the branch containing the parent taxa. For example, the user can specify the parent taxa name Plantae to restrict the results to the plant kingdom.\n\nImportant All sources might be match at least using kingdom or phylum level parent taxa name. However, only some sources make available the whole taxa hierarchy. Filtering results using parent_taxa with other ranks might not return any results for certain sources (e.g. Bryoquel, VASCAN, CDPNQ).\nWe thus HIGHLY recommend to use parent_taxa with kingdom or phylum level parent taxa name.\n\nThe parent_taxa argument is optional. If not specified, the module will return all results for the given scientific name.\nfrom bdqc_taxa.taxa_ref import TaxaRef\n\nresults = TaxaRef.from_all_sources('Salix', parent_taxa='Plantae')",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html#find-vernacular-names-for-a-scientific-name",
+    "href": "Bdqc_taxa_intro.html#find-vernacular-names-for-a-scientific-name",
+    "title": "bdqc_taxa",
+    "section": "Find vernacular names for a scientific name",
+    "text": "Find vernacular names for a scientific name\nThe taxa_vernacular module is used to query the reference taxa sources and parse their return using fuzzy matching in english and french.\nFor a specific match, the module provides functions to return the accepted vernacular names in english and french. The rank order of the sources is used to determine the accepted vernacular name.\n\nExample\nQuery for all sources using a scientific name can be done with the following method. This should fits most use cases.\nfrom bdqc_taxa.vernacular import Vernacular\n\nresults = Vernacular.from_match('Canis lupus')\n\n\nSynonyms\nFor certain sources, such as CDPNQ, the vernacular name will be returned for accepted synonyms. If observed scientific name differs, the user should do multiple queries for each known synonyms.",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html#sources",
+    "href": "Bdqc_taxa_intro.html#sources",
+    "title": "bdqc_taxa",
+    "section": "Sources",
+    "text": "Sources\n\nGlobal Names Resolver (GNR) : Retrieve the scientific name and the taxonomic hierarchy of a given name against many sources. Selected sources are VASCAN, ITIS and COL. Query is performed against the GNR API.\nGBIF : Retrieve the scientific name and the taxonomic hierarchy of a given name against the GBIF backbone taxonomy. Query is performed against the GBIF API.\nBryoquel : Implemented by the Biodiversité Québec team, this source is used to retrieve the scientific name and the taxonomic hierarchy of a given name against the Bryophytes of Québec. Query is performed against the the custom_sources sqlite database implemented by the Biodiversité Québec team using the Bryoquel excel file. See below for more details.\nCDPNQ : Implemented by the Biodiversité Québec team, this source is used to retrieve the scientific name and the taxonomic hierarchy of a given name against the list for the Centre de données sur le patrimoine naturel du Québec. Query is performed against the the custom_sources sqlite database implemented by the Biodiversité Québec team using the CDPNQ excel files. See below for more details.\nWikidata : Retrieve the vernacular name of a given scientific name against Wikidata. Query is performed against the Wikidata API.\n\n\nModules\nWrapper functions to query the sources using either api or the sqlite database are individually implemented in modules gbif, global_names, bryoquel, cdpnq and wikidata.",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Bdqc_taxa_intro.html#custom-sources",
+    "href": "Bdqc_taxa_intro.html#custom-sources",
+    "title": "bdqc_taxa",
+    "section": "Custom sources",
+    "text": "Custom sources\nThese tables containts the custom sources used by the taxa_ref module. They are implemented in the custom_sources sqlite database. The database is located in the bdqc_taxa package directory. Full-text search is implemented for the sqlite database using the FTS5 extension.\n\nTABLE bryoquel\n\nDescription:\nThis file was generated on 2022-09-21 from the Bryoquel taxonomy file.\nThe file was downloaded from http://societequebecoisedebryologie.org/Bryoquel.html on 2022-09-21.\nThe last version of the bryoquel xlsx file is from 2022-09-12`.\nThe file was parsed using the script `scripts/parse_bryoquel.py`.\nThe file was parsed using the script parse_bryoquel.ipynb.\n\n\nColumns:\nThe file contains a pandas dataframe with the following columns:\nid: the Bryoquel IDtaxon\nscientific_name: Noms latins acceptés du taxon, sans auteur\ntaxon_rank: Taxon rank\ngenus: Taxon genus\nfamily: Taxon family\nclade: Taxon clade\ncanonical_full: Noms latins acceptés du taxon, avec auteur\nauthorship: Auteur obtenu de Noms latins acceptés\nvernacular_name_fr: Noms français acceptés\nvernacular_name_en: Noms anglais acceptés\n\n\n\nTABLE cdpnq_odonates\n\nDescription:\nThis file was generated from the CDPNQ odonates data file.\nThe file was obtained from Anouk.Simard@mffp.gouv.qc.ca on May 24, 2022\nThe last version of the bryoquel xlsx file is from 2022-09-12`.\nThe file was parsed using the script `scripts/make_cdpnq_odonates.py`.\n\n\nColumns:\nname: scientific name\nvalid_name: valid scientific name\nrank: rank of the taxa\nsynonym: boolean indicating if the name is a synonym\nauthor: author of the scientific name\ncanonical_full: canonical full name\nvernacular_fr: vernacular name in French\nvernacular_fr2: vernacular name in French from Natureserve\n\n\n\nTABLE cdpnq_vertebrates\n\nDescription:\nThis file was generated from the Liste de la faune vert�br�e du Qu�bec (LFVQ) Data file LFVQ_05_12_2022.xlsx \nThe file was obtained from Donn�es Qu�bec on 2023-01-12.\nThe last version of thefile is from 2022-12-05`.\nThe file was parsed using the script `scripts/make_cdpnq_vertebrates.py`.\n\n\nColumns:\nname: scientific name\nvalid_name: valid scientific name\nrank: rank of the taxa\nsynonym: boolean indicating if the name is a synonym\nauthor: author of the scientific name\ncanonical_full: canonical full name\nvernacular_fr: vernacular name in French\nvernacular_en: vernacular name in English\nNotes: The entries have no recorded author.",
+    "crumbs": [
+      "Outils",
+      "bdqc_taxa",
+      "bdqc_taxa"
+    ]
+  },
+  {
+    "objectID": "Geoparquet_Atlas_Intro.html",
+    "href": "Geoparquet_Atlas_Intro.html",
+    "title": "Geoparquet pour Atlas",
+    "section": "",
+    "text": "La base de données Atlas est sauvegardée de façon régulière en format Parquet. Voici les instructions pour intéragir avec le fichier parquet entreposé sur l’infonuagique de l’Alliance des ressources numériques.\nlibrary(dplyr)\nlibrary(duckdb)\nlibrary(duckdbfs)\n\nbase_url&lt;-'https://object-arbutus.cloud.computecanada.ca/bq-io/atlas/parquet/'\n\natlas_local &lt;- function(parquet_date, destination_folder, tblname=\"atlas\"){\n  file_name&lt;-paste0('atlas_public_',parquet_date,\".parquet\")\n  url &lt;- paste0(base_url,file_name)\n  dest &lt;- paste0(destination_folder,'/',file_name)\n  download.file(url,dest)\n  requireNamespace(\"duckdbfs\")\n  duckdbfs::open_dataset(dest, tblname = tblname)\n}\n\natlas_remote &lt;- function(parquet_date, tblname=\"atlas\") {\n  file_name&lt;-paste0('atlas_public_',parquet_date,\".parquet\")\n  requireNamespace(\"duckdbfs\")\n  duckdbfs::open_dataset(paste0(base_url,file_name), tblname = tblname)\n}\n\natlas_dates &lt;- read.csv(paste0(base_url,'atlas_export_dates.csv'),header=FALSE, col.names=c('dates'))\nConnexion à distance au fichier GeoParquet.\nL’objet atlas_dates contient les dates de sauvegarde des fichiers disponibles.\n\natlas_rem &lt;- atlas_remote(atlas_dates[2,1])\n\nmb &lt;- atlas_rem |&gt; group_by(valid_scientific_name) |&gt; summarize(cnt=count()) |&gt; arrange(desc(cnt)) |&gt; collect()\nPour des opérations plus lourdes et une intéraction plus rapide avec le fichier, on peut le télécharger localement sur son ordinateur. Notez que le fichier fait environ 500MB, donc s’assurer d’avoir l’espace disque sur votre ordinateur.\n\natlas &lt;- atlas_local(atlas_dates[2,1],'/home/glaroc/Downloads/')\n\ngc &lt;- atlas |&gt; filter(valid_scientific_name == 'Antigone canadensis') |&gt; collect()\n\nsp_count &lt;- atlas |&gt; group_by(valid_scientific_name) |&gt; summarize(cnt=count()) |&gt; arrange(desc(cnt)) |&gt; collect()",
+    "crumbs": [
+      "Catalogues",
+      "Parquet et PMTiles",
+      "Geoparquet pour Atlas"
+    ]
+  },
+  {
+    "objectID": "Catalogues_intro.html",
+    "href": "Catalogues_intro.html",
+    "title": "Catalogues",
+    "section": "",
+    "text": "Courte (ou pas) description. Pour Guillaume ?",
+    "crumbs": [
+      "Catalogues"
+    ]
+  },
+  {
+    "objectID": "Atlas_intro.html",
+    "href": "Atlas_intro.html",
+    "title": "Base de données Atlas",
+    "section": "",
+    "text": "Joli petite description de la BD par Vincent? Ben? Victor? Toutes ces réponses ?\nsite web Atlas",
+    "crumbs": [
+      "Bases de données",
+      "atlas",
+      "Base de données Atlas"
+    ]
+  },
+  {
+    "objectID": "Rweb_intro.html",
+    "href": "Rweb_intro.html",
+    "title": "Rweb",
+    "section": "",
+    "text": "Courte (ou pas) description",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Rweb"
+    ]
+  },
+  {
+    "objectID": "Gbif_insert_intro.html",
+    "href": "Gbif_insert_intro.html",
+    "title": "gbif_insert",
+    "section": "",
+    "text": "Repo Github\ngbif_insert is a Python tool used to download occurrences data from www.gbif.org and inject it into atlas postgres database.",
+    "crumbs": [
+      "Outils",
+      "gbif_insert",
+      "gbif_insert"
+    ]
+  },
+  {
+    "objectID": "Gbif_insert_intro.html#installation",
+    "href": "Gbif_insert_intro.html#installation",
+    "title": "gbif_insert",
+    "section": "Installation",
+    "text": "Installation\n\nNew installation\npip3 install git+https://github.com/ReseauBiodiversiteQuebec/gbif_insert#egg=gbif_insert",
+    "crumbs": [
+      "Outils",
+      "gbif_insert",
+      "gbif_insert"
+    ]
+  },
+  {
+    "objectID": "Gbif_insert_intro.html#environment-variables",
+    "href": "Gbif_insert_intro.html#environment-variables",
+    "title": "gbif_insert",
+    "section": "Environment variables",
+    "text": "Environment variables\nConfiguration is done through environment variables. You can set them in your shell or in a .env file.\nTo use a dotenv file, create a .env file in the root directory of the project. This file will contain the environment variables required to run the script.\nGBIF_USER=... # GBIF account username\nGBIF_PASSWORD=... # GBIF account password\nGBIF_EMAIL=... # GBIF account email\nDB_HOST=localhost # Database host\nDB_PORT=5432 # Database port\nDB_NAME=atlas # Database name\nDB_USER=postgres # Database user\nDB_PASSWORD= # Database password, optional",
+    "crumbs": [
+      "Outils",
+      "gbif_insert",
+      "gbif_insert"
+    ]
+  },
+  {
+    "objectID": "Gbif_insert_intro.html#usage",
+    "href": "Gbif_insert_intro.html#usage",
+    "title": "gbif_insert",
+    "section": "Usage",
+    "text": "Usage\n\nCommand line\nScript scrupts/run.sh can be used to download and inject data from gbif into atlas database. It reads the environment variables from the .env file.\n./scripts/run.sh",
+    "crumbs": [
+      "Outils",
+      "gbif_insert",
+      "gbif_insert"
+    ]
+  },
+  {
+    "objectID": "Gbif_insert_intro.html#how-it-works",
+    "href": "Gbif_insert_intro.html#how-it-works",
+    "title": "gbif_insert",
+    "section": "How it works",
+    "text": "How it works\nThere are 3 parameters that must be sent to the Gbif object regarding the gbif account: username, password and email. These must be a valid gbif account parameters in order to trigger the download. Those variables can be set in the .env file or in the constructor of the Gbif object as described in the configuration section.\nPlease refer to the example below to try out an injection test.\nTest code example\n# Script pour lire les .csv et les envoyer dans la BD\n#from ast import Str\nimport time\nimport tempfile\nimport os\n\n# Méthode d'entrée du programme\n# In: aucun param (fonction main)\n# Out: fin du programme\ndef main():\n    # Create temp workdir for test\n    temp_dir = tempfile.mkdtemp(prefix='gbif_insert_test_')\n    cur_dir = os.getcwd()\n    os.chdir(temp_dir)\n\n    from gbif_insert.gbif import Gbif\n    import os\n    from dotenv import load_dotenv\n\n    # Load environment variables\n    load_dotenv()\n    GBIF_USER = os.getenv('GBIF_USER')\n    GBIF_PASSWORD = os.getenv('GBIF_PASSWORD')\n    GBIF_EMAIL = os.getenv('GBIF_EMAIL')\n\n    # Calculer le temps d'execution\n    start_time = time.time() \n\n    gbif_object = Gbif(GBIF_USER, GBIF_PASSWORD, GBIF_EMAIL)\n    \n    # Téléchargement des données, validation et injection\n    gbif_object.start()\n\n    print(\"Temps d'exécution: \" + str(time.time() - start_time) + \" secondes.\")\n    os.chdir(cur_dir)                                                                                                   \n\n# Point d'entrée\nmain()",
+    "crumbs": [
+      "Outils",
+      "gbif_insert",
+      "gbif_insert"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html",
+    "href": "Coleo_structure.html",
+    "title": "Structure",
+    "section": "",
+    "text": "Repo Github",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#champs-communs-à-la-plupart-des-tables",
+    "href": "Coleo_structure.html#champs-communs-à-la-plupart-des-tables",
+    "title": "Structure",
+    "section": "Champs communs à la plupart des tables",
+    "text": "Champs communs à la plupart des tables\nLes champs en gras sont obligatoires\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nid\nnombre entier\nIdentifiant unique\n\n\n\ncreated_at\ndate-heure\nDate et heure de création\n\n\n\nupdated_at\ndate-heure\nDate et heure de mise à jour",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#cellules",
+    "href": "Coleo_structure.html#cellules",
+    "title": "Structure",
+    "section": "Cellules",
+    "text": "Cellules\nNom de la table : cells\nPoint d’accès : /api/v1/cells\nInclus dans les résultats : sites\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nname\ntexte\nNom de la cellule\n\n\n\ncell_code\ntexte\nCode de la cellule\n\n\n\ngeom\ngeometry\nLocalisation de la cellule",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#sites",
+    "href": "Coleo_structure.html#sites",
+    "title": "Structure",
+    "section": "Sites",
+    "text": "Sites\nNom de la table : sites\nPoint d’accès : /api/v1/sites\nInclus dans les résultats : campaigns, cells\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncell_id\nnombre entier\nIdentifiant de la cellule\n\n\n\noff_station_code_id\ntexte\n\n\n\n\nsite_code\ntexte\nIdentifiant unique du site\n\n\n\nsite_name\ntexte\nNom du site. Par exemple, le nom du lac.\n\n\n\ntype\nchoix\nType d’inventaire réalisé sur le site\n‘lac’, ‘rivière’, ‘forestier’, ‘marais’, ‘milieu humide côtier’, ‘toundrique’, ‘tourbière’\n\n\nopened_at\ndate\nDate de l’ouverture du site\n\n\n\ngeom\ngeometry\nLocalisation du site\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#campagnes",
+    "href": "Coleo_structure.html#campagnes",
+    "title": "Structure",
+    "section": "Campagnes",
+    "text": "Campagnes\nNom de la table : campaigns\nPoint d’accès : /api/v1/campaings\nInclus dans le résultat : efforts, environments, devices, lures, landmarks(+thermographs), traps\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nsite_id\ntexte\nIdentifiant unique du site attaché à la campagne d’échantillonnage\n\n\n\ntype\nchoix\nLe type campagne réalisé\n‘végétation’, ‘végétation_transect’, ‘sol’, ‘décomposition_sol’, ‘acoustique_chiroptères’,‘acoustique_oiseaux’,‘acoustique_anoures’,‘acoustique_orthoptères’, ‘phénologie’, ‘mammifères’, ‘papilionidés’, ‘odonates’, ‘insectes_sol’, ‘ADNe’,‘zooplancton’, ‘thermographe’\n\n\ntechnicians\nARRAY(texte)\nNoms des technicien(ne)s\n\n\n\nopened_at\ndate\nDate d’ouverture de la campagne d’échantillonnage\n\n\n\nclosed_at\ndate\nDate de fermeture de la campagne d’échantillonnage\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#efforts",
+    "href": "Coleo_structure.html#efforts",
+    "title": "Structure",
+    "section": "Efforts",
+    "text": "Efforts\nNom de la table : efforts\nPoint d’accès : /api/v1/efforts\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncampaing_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\nstratum\nchoix\nStrate de végétation concernée par l’effort d’échantillonage\n‘arbres’, ‘arbustes/herbacées’, ‘bryophytes’\n\n\ntime_start\ndate et heure\nDate et heure de début de l’inventaire\n\n\n\ntime_finish\ndate et heure\nDate et heure de fin de l’inventaire\n\n\n\nsamp_surf\nnombre décimal\nTaille de la surface d’échantillonage\n\n\n\nsamp_surf_unit\nchoix\nUnité de mesure utilisé pour la surface d’échantillonnage\n‘cm2’, ‘m2’, ‘km2’\n\n\nrecording_minutes\nnombre entier\nNombre de minutes d’enregistrement\n\n\n\nfraction_benthos\nnombre décimal\nFraction de l’échantillon de benthos analysé\n0-1\n\n\nphoto_count\nnombre entier\nNombre de photos\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#environnements",
+    "href": "Coleo_structure.html#environnements",
+    "title": "Structure",
+    "section": "Environnements",
+    "text": "Environnements\nNom de la table : environments\nPoint d’accès : /api/v1/environment\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncampaing_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\nwind\nchoix 1-5\nVent en km/h\n‘1’=‘calme (moins de 1 km/h)’, ‘2’=‘très légère brise (1 à 5 km/h)’, ‘3’=‘légère brise (6 à 11 km/h)’, ‘4’=‘petite brise (12 à 19 km/h)’, ‘5’=jolie brise (20 à 28 km/h)’\n\n\nsky\nchoix 1-5\nAllure du ciel\n‘1’=‘dégagé (0 à 10 %)’, ‘2’=‘partiellement nuageux (10 à 50 %)’, ‘3’=‘nuageux (50 à 90 %)’, ‘4’=‘pluvieux’, ‘5’=‘orageux’\n\n\ntemp_c\nnombre décimal\nTempérature en celcius\n\n\n\nextra\njson\nAutres valeurs pour des colonnes additionnelles en format json\n{“largeur_riviere”: { type: ‘double’, description: ‘Largeur de la rivière’, units: ‘m’, value: 7.12}}\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#appareils",
+    "href": "Coleo_structure.html#appareils",
+    "title": "Structure",
+    "section": "Appareils",
+    "text": "Appareils\nNom de la table : devices\nPoint d’accès : /api/v1/devices\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncampaing_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\nsd_card_codes\nARRAY(texte)\nNuméro d’identification des cartes SD utilisées\n\n\n\ncam_code\nARRAY(texte)\nNuméro d’identification de la caméra utilisée\n\n\n\ncam_h_cm\nnombre décimal\nHauteur de la camera en centimètres\n\n\n\nmic_logger_code\ntexte\nNuméro d’identification du enregistreur utilisé\n\n\n\nmic_acc_code\ntexte\nNuméro d’identification du microphone accoustique utilisé\n\n\n\nmic_h_cm_acc\nnombre décimal\nHauteur du microphone ultrason utilisé en centimètres\n\n\n\nmic_ultra_code\ntexte\nHauteur du microphone ultrason utilisé en centimètres\n\n\n\nmic_orientation\nchoix\nOrientation du dispositif\n‘n’, ‘s’, ‘e’, ‘o’, ‘ne’, ‘no’, ‘se’, ‘so’",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#appâts",
+    "href": "Coleo_structure.html#appâts",
+    "title": "Structure",
+    "section": "Appâts",
+    "text": "Appâts\nNom de la table : lures\nPoint d’accès : /api/v1/lures\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nlure\nnombre entier\nType de leurre ou appât utilisé pour le dispositif\n\n\n\ncampaign_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\ninstalled_at\ndate\nDate d’installation de l’appât/leurre",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#pièges",
+    "href": "Coleo_structure.html#pièges",
+    "title": "Structure",
+    "section": "Pièges",
+    "text": "Pièges\nNom de la table : traps\nPoint d’accès : /api/v1/traps\nInclus dans le résultat : landmarks, samples.\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ntrap_code\ntexte\nCode du piège\n\n\n\ncampaign_id\ntexte\nCode d’identification de la campagne\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#repères",
+    "href": "Coleo_structure.html#repères",
+    "title": "Structure",
+    "section": "Repères",
+    "text": "Repères\nNom de la table : landmarks\nPoint d’accès : /api/v1/landmarks\nInclus dans le résultat : thermographs\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncampaing_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\ntree_code\ntexte\nIdentifiant unique de l’arbre repère\n\n\n\ntaxa_name\ntexte\nEspèce de l’arbre repère\n\n\n\ndbh\nnombre entier\nDHP de l’arbre repère\n\n\n\ndbh_unit\nchoix\nUnité pour le DHP\n‘mm’,‘cm’,‘m’\n\n\naxis\nchoix\nL’axe du transect pour la végétation\n‘n’,‘se’,‘so’\n\n\nazimut\nnombre entier\nAzimut du dispositif/appât/borne depuis le repère (arbre ou borne), entre 0 et 360\n\n\n\ndistance\nnombre décimal\nDistance du dispositif/appât/borne depuis le repère (arbre ou borne)\n\n\n\ndistance_unit\nchoix\nDistance du dispositif/appât/borne depuis le repère (arbre ou borne)\n‘mm’,‘cm’,‘m’\n\n\ngeom\ngeometry(POINT)\nPosition du repère\n\n\n\ntype\nchoix\nType de repère\n‘gps’, ‘arbre’, ‘gps+arbre’, ‘borne_axe’, ‘thermographe’\n\n\nthermograph_type\nchoix\nType de thermographe\n‘eau’, ‘eau_extérieur’, ‘sol’, ‘sol_extérieur’, ‘puit_marais’\n\n\ntrap_id\nnombre entier\nIdentifiant du piège\n\n\n\nlure_id\nnombre entier\nIdentifiant de l’appât\n\n\n\ndevice_id\nnombre entier\nIdentifiant de l’appareil\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#échantillons",
+    "href": "Coleo_structure.html#échantillons",
+    "title": "Structure",
+    "section": "Échantillons",
+    "text": "Échantillons\nNom de la table : samples\nPoint d’accès : /api/v1/samples\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nsample_code\ntexte\nNuméro de l’échantillon\n\n\n\ndate_samp\ndate\nDate de collecte de l’échantillon\n\n\n\ntrap_id\nnombre entier\nNuméro d’identification unique du piège\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#thermographes",
+    "href": "Coleo_structure.html#thermographes",
+    "title": "Structure",
+    "section": "Thermographes",
+    "text": "Thermographes\nCette table est utilisée pour faire la liste de thermographes pour la température de l’eau et du sol, ainsi que les appareils de profondeur d’eau et température utilisée dans les marais. Cette table est liée et à la table des repères et à la table des obs_thermograph, puisqu’il peut y avoir plusieurs thermographes à un même endroit, et des milliers d’observations pour un même thermographe.\nNom de la table : thermographs\nPoint d’accès : /api/v1/thermographs\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nlandmark_id\nnombre entier\nNuméro du repère\n\n\n\nthermograph_no\ntexte\nNuméro/code du thermographe\n\n\n\ndepth\nnombre décimal\nProfondeur dans l’eau ou dans le sol (cm)\n\n\n\nheight\nnombre décimal\nHauteur pour les thermographes extérieurs (cm)\n\n\n\nis_on_bag\nbooléen 1/0\nEst-ce le dernier thermographe sur le sac de la chaîne?\n\n\n\nshading\nnombre entier\nOmbrage de 1 (aucun ombrage) à 5 (complètement ombragé)\n\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations",
+    "href": "Coleo_structure.html#observations",
+    "title": "Structure",
+    "section": "Observations",
+    "text": "Observations\nNom de la table : observations\nPoint d’accès : /api/v1/observations\nInclus dans le résultat: media, obs_soil, obs_species, obs_soil_decomposition\nCette table est la table principale qui contient les informations communes à toutes les observations. Dépendamment du type de campagne, les informations complémentaires sont dans les tables obs_*\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ndate_obs\ndate\nDate d’observation à l’intérieur de la campagne d’inventaire\n\n\n\ntime_obs\nheure HH:mm:ss\nHeure de l’observation à l’intérieur de la campagne d’inventaire\n\n\n\nstratum\nchoix\nStrate de végétation inventoriée (spécifique aux campagnes de type végétation)\n‘arborescente’, ‘arbustive’, ‘herbacées’, ‘bryophytes’\n\n\naxis\nchoix\nL'axe du transect pour la végétation\n‘n’,‘se’,‘so’\n\n\ndistance\nnombre décimal\nLa distance le long du transect pour la végétation\n\n\n\ndistance_unit\nchoix\nUnité de mesure utilisé pour la distance le long du transect\n\n\n\ndepth\nnombre décimal\nProfondeur pour les observations de zooplancton\n\n\n\nsample_id\nnombre entier\nnuméro de l’échantillon\n\n\n\nis_valid\nbooléen 1/0\nL’observation est-elle valide?\npar défaut: 1\n\n\ncampaign_id\nnombre entier\nNuméro d’identification de la campagne\n\n\n\ncampaign_info\nchamps virtuel\nInformations sur la campagne\n\n\n\nthermograph_id\nnombre entier\nNuméro du thermographe\n\n\n\nextra\njson\nAutres valeurs pour des colonnes additionnelles en format json\n{“longueur_poisson”: { type: ‘double’, description: ‘Longueur du poisson’, units: ‘cm’, value: 34.2}}\n\n\nnotes\ntexte\nCommentaires",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#correspondance-observation-effort",
+    "href": "Coleo_structure.html#correspondance-observation-effort",
+    "title": "Structure",
+    "section": "Correspondance observation-effort",
+    "text": "Correspondance observation-effort\nNom de la table : observations_efforts_lookup\nPoint d’accès : /api/v1/observations_efforts_lookup\nInclus dans le résultat: observations, efforts\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\ntexte\nNuméro d’identification de l’observation\n\n\n\neffort_id\ntexte\nNuméro d’identification de l’effort",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#correspondance-observation-repère",
+    "href": "Coleo_structure.html#correspondance-observation-repère",
+    "title": "Structure",
+    "section": "Correspondance observation-repère",
+    "text": "Correspondance observation-repère\nNom de la table : observations_landmarks_lookup\nPoint d’accès : /api/v1/observations_landmarks_lookup\nInclus dans le résultat: observations, landmarks\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\ntexte\nNuméro d’identification de l’observation\n\n\n\nlandmark_id\ntexte\nNuméro d’identification du repère",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-despèces",
+    "href": "Coleo_structure.html#observations-despèces",
+    "title": "Structure",
+    "section": "Observations d’espèces",
+    "text": "Observations d’espèces\nNom de la table : obs_species\nPoint d’accès : /api/v1/obs_species\nInclus dans le résultat: attributes, ref_species\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ntaxa_name\ntexte\nNom complet de l’espèce observée\n\n\n\nvariable\ntexte\nRéférence vers la table d’attributs\n\n\n\nvalue\nnombre décimal\nValeur de l’attribut\n\n\n\nvalue_string\ntexte\nValeur de l’attribut pour les campagnes végétation\n\n\n\nobservation_id\nnombre entier\nIdentifiant unique de la table d’observations",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#attributs",
+    "href": "Coleo_structure.html#attributs",
+    "title": "Structure",
+    "section": "Attributs",
+    "text": "Attributs\nNom de la table : attributes\nPoint d’accès : /api/v1/attributes\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nvariable\ntexte\nNom de la variable attribuée\n\n\n\ndescription\ntexte\nDescription de la variable attribuée\n\n\n\nunit\ntexte\nUnité de la variable attribuée",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#table-de-référence-des-noms-despèces",
+    "href": "Coleo_structure.html#table-de-référence-des-noms-despèces",
+    "title": "Structure",
+    "section": "Table de référence des noms d’espèces",
+    "text": "Table de référence des noms d’espèces\nNom de la table : ref_species\nPoint d’accès : /api/v1/taxa\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nname\ntexte\nNom scientifique du taxa\n\n\n\nvernacular_fr\ntexte\nNom vernaculaire français de l’espèce\n\n\n\nvernacular_en\ntexte\nNom vernaculaire anglais de l’espèce\n\n\n\nrank\nchoix\nRang taxonomique\n‘sous-embranchement’, ‘embranchement’, ‘sous-classe’, ‘classe’, ‘sous-ordre’, ‘ordre’, ‘super-famille’, ‘famille’, ‘genre’, ‘espèce’,‘sous-espèce’,‘variété’, ‘complexe’,‘genre_hybride’, ‘espèce_hybride’,‘variété_hybride’,‘sous-espèce_hybride’\n\n\ncategory\nchoix\nCatégorie d’organisme vivant\n‘poissons’,‘plantes’,‘oiseaux’,‘amphibiens’,‘arthropodes’,‘mammifères’,‘reptiles’,‘autres’,‘mollusques’\n\n\ntsn\nnombre entier\nIdentifiant ITS (TSN)\n\n\n\nvascan_id\nnombre entier\nIdentifiant Vascand pour les plantes\n\n\n\nbryoquel_id\nnombre entier\nIdentifiant Bryoquel pour les bryphytes",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-de-la-décomposition-du-sol-sacs-de-thé",
+    "href": "Coleo_structure.html#observations-de-la-décomposition-du-sol-sacs-de-thé",
+    "title": "Structure",
+    "section": "Observations de la décomposition du sol (sacs de thé)",
+    "text": "Observations de la décomposition du sol (sacs de thé)\nNom de la table : obs_soil_decomposition\nPoint d’accès : /api/v1/obs_soil_decomposition\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\nnombre entier\nNuméro de l’observation dans la table observation\n\n\n\nbag_no\ntexte\nCode du sachet de thé\n\n\n\ntype\nchoix\nType de sachet de thé\n‘thé vert’, ‘rooibos’\n\n\ngeom\ngeometry(POINT)\nlocalisation du sachet\n\n\n\ndate_end\ndate\nDate de la collecte du sachet de thé. La date de l’observation est la date de la mise en place.\n\n\n\nstart_weight\nnombre décimal\nPoids du sachet au départ\n\n\n\nend_weight_with_bag\nnombre décimal\nPoids avec le sachet à la fin\n\n\n\nend_weight_tea\nnombre décimal\nPoids sans le sachet à la fin\n\n\n\nshading\nnombre entier\nOmbrage 1-5\n1=Aucun ombrage à 5=Complètement ombragé\n\n\nhuman_impact\nnombre entier\nImpacts anthropique 1-5\n1=Aucun impact à 5=Beaucoup d’impacts",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-dadn-environnemental",
+    "href": "Coleo_structure.html#observations-dadn-environnemental",
+    "title": "Structure",
+    "section": "Observations d’ADN Environnemental",
+    "text": "Observations d’ADN Environnemental\nNote: Le format des observations d’ADN environnemental est différent des autres observations puisqu’il inclut le numéro du repère, afin de permettre le traitement de multiples repères sur un même lac.\nNom de la table : obs_edna\nPoint d’accès : /api/v1/obs_edna\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\nnombre entier\nNuméro de l’observation dans la table observation\n\n\n\nlandmark_id\nnombre entier\nNuméro du repère\n\n\n\ntaxa_name\ntexte\nNom de l’espèce observée\n\n\n\nsequence_count\nnombre réel\nNombre de séquences\n\n\n\nsequence_count_corrected\nnombre réel\nNombre de séquences corrigé\n\n\n\ntype_edna\nchoix\nCatégorie d’observation ADNe\n“confirmé”, “probable”, “improbable”, “non-poisson”\n\n\nnotes\nTexte\nNotes",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-des-condtitions-physico-chimiques-en-lac",
+    "href": "Coleo_structure.html#observations-des-condtitions-physico-chimiques-en-lac",
+    "title": "Structure",
+    "section": "Observations des condtitions physico-chimiques en lac",
+    "text": "Observations des condtitions physico-chimiques en lac\nNom de la table : obs_lake\nPoint d’accès : /api/v1/obs_lake\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\nnombre entier\nNuméro de l’observation dans la table observation\n\n\n\nwater_transparency\nnombre décimal\nTransparence dans la colonne d’eau exprimée en mètres à l’aide d’un disque de Secchi\n\n\n\nwater_temp\nnombre décimal\nTempérature de l’eau en degrés Celsius\n\n\n\noxygen_concentration\nnombre décimal\nConcentration de l’oxygène dans l’eau (mg/L)\n\n\n\nph\nnombre décimal\nMesure du pH de l’eau\n\n\n\nconductivity\nnombre décimal\nConductivité de l’eau en mètres/seconde (m/s)\n\n\n\nturbidity\nnombre décimal\nTurbidité de l’eau en unités de turbidité néphalométriques (uNT)\n\n\n\ndissolved_organic_carbon\nnombre décimal\nCarbone organique dissous (filtré 0,45 µm)\n\n\n\nammonia_nitrogen\nnombre décimal\nAzote ammonical (filtré ou non)\n\n\n\nnitrates_and_nitrites\nnombre décimal\nNitrates et nitrites (filtré ou non)\n\n\n\ntotal_nitrogen\nnombre décimal\nAzote total (filtré ou non)\n\n\n\ntotal_phosphorus\nnombre décimal\nPhosphore total en trace lac 660 nm ou 660 nm verre\n\n\n\nchlorophyl_a\nnombre décimal\nChlorophyle A active\n\n\n\npheophytin_a\nnombre décimal\nPhéophytine A\n\n\n\nnotes\nTexte\nNotes",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-de-profil-du-sol",
+    "href": "Coleo_structure.html#observations-de-profil-du-sol",
+    "title": "Structure",
+    "section": "Observations de profil du sol",
+    "text": "Observations de profil du sol\nNom de la table : obs_soil\nPoint d’accès : /api/v1/obs_soil\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobservation_id\nnombre entier\nNuméro de l’observation dans la table observation\n\n\n\ngeom\ngeometry(POINT)\nlocalisation du sachet\n\n\n\ndepth_tot\nnombre décimal\nProfondeur du pédon\n\n\n\ndepth_hummus\nnombre décimal\nProfondeur de la couche d’humus\n\n\n\ndepth_f\nnombre décimal\nProfondeur de la couche organique F\n\n\n\ndepth_m\nnombre décimal\nProfondeur de la couche organique M\n\n\n\ndepth_h\nnombre décimal\nProfondeur de la couche organique H\n\n\n\ndepth_a\nnombre décimal\nProfondeur de la couche minérale A\n\n\n\ntexture_a\nchoix\nTexture de la couche A\n“Argile”,“Argile limoneuse”,“Argile lourd”,“Argile sableuse”,“Limon”,“Loam”,“Loam argileux”,“Loam limoneux”,“Loam limono-argileux”, “Loam sableux”,“Loam sableux très grossier”,“Loam sableux grossier”,“Loam sableux moyen”,“Loam sableux fin”,“Loam sableux très fin”,“Loam sablo-argileux”,“Sable”,“Sable très grossier”,“Sable grossier”,“Sable moyen”,“Sable fin”,“Sable très fin”,“Sable très grossier loameux”,“Sable moyen loameux”,“Sable fin loameux”,“Sable très fin loameux”,“Sable loameux”,“Autres”\n\n\ndepth_b\nnombre décimal\nProfondeur de la couche minérale b\n\n\n\ntexture_b\nchoix\nTexture de la couche B\nVoir A\n\n\ndepth_c\nnombre décimal\nProfondeur de la couche minérale c\n\n\n\ntexture_c\nchoix\nTexture de la couche C\nVoir A\n\n\ndepth_d\nnombre décimal\nProfondeur de la couche minérale d\n\n\n\ntexture_d\nchoix\nTexture de la couche D\nVoir A\n\n\nmottling\nBooléen 0/1\nPrésence de moucheture\n\n\n\nmottling_depth\nnombre décimal\nProfondeur de moucheture, si présente\n\n\n\ndrainage_class\nnombre entier\nClasse de drainage\n0,1,2,3,4,5 ou 6\n\n\nwater_table_depth\nnombre décimal\nProfondeur de la nappe phréatique\n\n\n\nreached_one_meter\nBooléen 0/1\nEst-ce que la profondeur de 1 m a été atteinte?\n\n\n\ndepth_reached\nnombre décimal\nProfondeur atteinte (si moins de 1 m)\n\n\n\nnotes\nTexte\nNotes",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#observations-de-thermographes",
+    "href": "Coleo_structure.html#observations-de-thermographes",
+    "title": "Structure",
+    "section": "Observations de thermographes",
+    "text": "Observations de thermographes\nNom de la table : obs_thermograph\nPoint d’accès : /api/v1/obs_thermograph\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ncampaign_id\nnombre entier\nNuméro de la campagne dans la table campaigns\n\n\n\nthermograph_id\nnombre entier\nNuméro du thermographe dans la table thermographs\n\n\n\ntemperature\nnombre décimal\nTempérature (C)\n\n\n\npressure\nnombre décimal\nPression (psi)\n\n\n\ndate_obs\ndate\nDate d’observation à l’intérieur de la campagne d’inventaire\n\n\n\ntime_obs\nheure HH:mm:ss\nHeure de l’observation à l’intérieur de la campagne d’inventaire",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#media",
+    "href": "Coleo_structure.html#media",
+    "title": "Structure",
+    "section": "Media",
+    "text": "Media\nNom de la table : media\nPoint d’accès : /api/v1/media\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ntype\nchoix\nType de média\n‘image’, ‘audio’, ‘video’\n\n\nrecorder\nchoix\nType d’enregistreur\n‘ultrasound’, ‘audible’\n\n\nog_format\ntexte\nOriginal format (jpeg, png, etc)\n\n\n\nog_extention\ntexte\nOriginal extension (.jpg, .png, etc.)\n\n\n\nuuid\ntexte\nUUID, Identifiant unique généré par Coléo\n\n\n\nname\ntexte\nNom du fichier original\n\n\n\nsite_id\nnombre entier\nNuméro d’identification du site\n\n\n\ncampaign_id\nnombre entier\nNuméro d’identification de la campagne",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#table-de-correspondance---observation-media",
+    "href": "Coleo_structure.html#table-de-correspondance---observation-media",
+    "title": "Structure",
+    "section": "Table de correspondance - Observation-media",
+    "text": "Table de correspondance - Observation-media\nNom de la table : obs_media\nPoint d’accès : /api/v1/obs_media\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nobs_id\nNombre entier\nIdentifiant de l’observation\n\n\n\nmedia_id\nNombre entier\nIdentifiant du média",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#table---colonnes",
+    "href": "Coleo_structure.html#table---colonnes",
+    "title": "Structure",
+    "section": "Table - colonnes",
+    "text": "Table - colonnes\nPoint d’accès : /api/v1/table_columns\n\n\n\n\n\n\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\ntable\nTexte\nNom de la table dans la base de données\n\n\n\n\n** Retourne: la liste des colonnes que comporte cette table",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Coleo_structure.html#options-des-colonnes",
+    "href": "Coleo_structure.html#options-des-colonnes",
+    "title": "Structure",
+    "section": "Options des colonnes",
+    "text": "Options des colonnes\nPoint d’accès : /api/v1/enum_options\n\n\n\nChamps\nType\nDescription\nOptions\n\n\n\n\nenum\nTexte\nNom de l’enum\n\n\n\n\n** Retourne: la liste des options pour cette colonne",
+    "crumbs": [
+      "Bases de données",
+      "Coleo",
+      "Structure"
+    ]
+  },
+  {
+    "objectID": "Rweb_shinyapp.html",
+    "href": "Rweb_shinyapp.html",
+    "title": "Déploiement d’une app Shiny",
+    "section": "",
+    "text": "Repo Github",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Déploiement d'une app Shiny"
+    ]
+  },
+  {
+    "objectID": "Rweb_shinyapp.html#connexion-to-rweb",
+    "href": "Rweb_shinyapp.html#connexion-to-rweb",
+    "title": "Déploiement d’une app Shiny",
+    "section": "Connexion to rweb",
+    "text": "Connexion to rweb\nssh USERNAME@rweb.vhost33",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Déploiement d'une app Shiny"
+    ]
+  },
+  {
+    "objectID": "Rweb_shinyapp.html#add-a-shiny-app-to-rweb",
+    "href": "Rweb_shinyapp.html#add-a-shiny-app-to-rweb",
+    "title": "Déploiement d’une app Shiny",
+    "section": "Add a shiny app to rweb",
+    "text": "Add a shiny app to rweb\n\nCreate a new SSH key with\n\nssh-keygen -t rsa -f ~/.ssh/id_rsa.REPONAME\n\nAdd the id_rsa.REPONAME.pub file as a deploy key to the Github repo with a write access\nEdit the ~/.ssh/config file to add\n\nHost REPONAME.github.com\n  HostName github.com\n  User git\n  IdentityFile /home/shiny/.ssh/id_rsa.REPONAME\n\nGit clone the repository in the shiny server\n\ncd /srv/shiny-server\ngit clone git@REPONAME.github.com:ReseauBiodiversiteQuebec/REPONAME.git",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Déploiement d'une app Shiny"
+    ]
+  },
+  {
+    "objectID": "Rweb_shinyapp.html#view-shiny-apps-logs",
+    "href": "Rweb_shinyapp.html#view-shiny-apps-logs",
+    "title": "Déploiement d’une app Shiny",
+    "section": "View shiny apps logs",
+    "text": "View shiny apps logs\nAll logs are stored in the var log directory\nsudo tail /var/log/shiny-server/\nAssociated Github repository",
+    "crumbs": [
+      "Serveurs",
+      "Rweb",
+      "Déploiement d'une app Shiny"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_telechargement.html",
+    "href": "Rcoleo_telechargement.html",
+    "title": "Téléchargement",
+    "section": "",
+    "text": "Repo Github\nIl est possible de télécharger les données de coleo directement depuis R. Pour cela, il faut utiliser la fonction coleo_request_general.\nPour télécharger les données, il faut utiliser la commande coleo_request_general et spécifier la table à télécharger ou la fonction à appeler.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Téléchargement"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_telechargement.html#télécharger-des-données-dune-table-de-coléo",
+    "href": "Rcoleo_telechargement.html#télécharger-des-données-dune-table-de-coléo",
+    "title": "Téléchargement",
+    "section": "Télécharger des données d’une table de Coléo",
+    "text": "Télécharger des données d’une table de Coléo\nLa commande coleo_request_general prend trois arguments pour télécharger desdonnées d’uen table (ou d’une View) de Coléo : d’abord un endpoint (le nom de la table), response_as_df = TRUE pour que la commande retourne la requête dans une table et le nom du schéma à l’argument schéma. Il est aussi possible d’ajouter des paramètres à la requête pour préciser les critères de recherche.\nPar exemple, pour télécharger les données de la table cells, il faut utiliser l’endpoint cells. Si aucun paramètre suuplémentaire n’est passé à la commande, toutes les entrées de la table sont retournées. ATTENTION !!! Cela peut représenter beaucoup de données.\nVoici un exemple de téléchargement de l’ensemble des données de la table cells :\ncells &lt;- coleo_request_general(\"cells\", response_as_df = TRUE, schema = \"public\")\nOn peut rafiner notre recherche en spécifiant des paramètres pour préciser les données à télécharger.\nVoici un exemple de téléchargement des données de la table cells avec le paramètre cell_code qui permet de spécifier le code de la cellule à télécharger :\ncell_105_101 &lt;- coleo_request_general(\"cells\", response_as_df = TRUE, schema = \"public\", cell_code = \"eq.105_101\")\nNotez que les paramètres passés doivent respecter la nomenclature des api postgREST. Ainsi, pour une équivalence comme cell_code = \"eq.105_101\" il faut ajouter eq. avant la valeur.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Téléchargement"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_telechargement.html#télécharger-des-données-dune-fonction-de-coléo",
+    "href": "Rcoleo_telechargement.html#télécharger-des-données-dune-fonction-de-coléo",
+    "title": "Téléchargement",
+    "section": "Télécharger des données d’une fonction de Coléo",
+    "text": "Télécharger des données d’une fonction de Coléo\nLes requêtent sur des fonctions requièrent un format différent celles sur des tables. Les arguments demeurent les mêmes, mais rpc/ doit être ajouté avant le nom de la fonction.\nVoici un exemple de téléchargement des colonnes de la table cells en utilisant la fonction table_columns :\ncells_columns &lt;- coleo_request_general('rpc/table_columns', response_as_df = TRUE, 'table_name' = 'cells')",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Téléchargement"
+    ]
+  },
+  {
+    "objectID": "Catalogues_s5cmd_use.html",
+    "href": "Catalogues_s5cmd_use.html",
+    "title": "Manipulation des catalogues",
+    "section": "",
+    "text": "L’outil s5cmd permet la gestion des contenus des différents catalogues utilisés par Biodiversité Québec. La première étape consiste à installer cet outil après avoir téléchargé le fichier nécessaire.\n# Pour les utilisateurs de Linux\n# Naviguer jusque dans le dossier où se situe le fichier téléchargé\nsudo dpkg -i s5cmd_2.2.2_linux_amd64.deb\n\ns5cmd # pour accéder aux différentes commandes dispo et à l'aide\nIl est nécessaire de paramétrer 3 variables environnement indispensables au bon fonctionnement de s5cmd. Il y a deux manières de procéder: spécifier ces variables à chaque lancement de s5cmd\n\nAWS_ACCESS_KEY_ID=xxxxxx\nAWS_SECRET_ACCESS_KEY=xxxxxx\nS3_ENDPOINT_URL=xxxxxx\n\ns5cmd ls s3://bq-io/\nou les enregistrer de façon permanente en local dans le fichier de paramétrage du terminal, par ex. .zshrc.\nexport AWS_ACCESS_KEY_ID=xxxxxx\nexport AWS_SECRET_ACCESS_KEY=xxxxxx\nexport S3_ENDPOINT_URL=xxxxxx\nPour plus d’informations, contacter Guillaume Larocque (guillaume.larocque@mcgill.ca) ou Claire-Cécile Juhasz (juhc3201@usherbrooke.ca).\n\nParcourir les répertoires ou buckets\nPour entrer et naviguer dans les catalogues, utiliser la commande:\ns5cmd ls s3://bq-io/\nAttention de ne pas oublier le slash final pour pouvoir voir le contenu du bucket ciblé. Dans le cas contraire, votre terminal vous dira si oui ou non le catalogue existe mais ne présentera pas son contenu.\n\n\nCréer un bucket et uploader du contenu\nLa création d’un nouveau bucket se fera automatiquement en envoyant un nouveau dossier ou fichier dans le catalogue avec la commande cp pour copy object. Par exemple, si vous souhaitez créer un nouveau bucket appelé super_data dans le catalogue ACER qui contiendra le fichier super_nice_data.tif, il vous faudra procéder de la façon suivante:\ns5cmd cp -acl public-read absolute_path/super_nice_data.tif s3://bq-io/acer/super_data/\nL’argument -acl public-read est indispensable pour permettre de rendre les données publiques et accessibles.\nAttention, si vous souhaitez stocker un fichier au format geoPackage sur lequel vous souhaitez faire des requêtes SQL par la suite, il est nécessaire de créer des index sur toutes les colonnes qui seront susceptibles d’être utilisées.\n# Indexation\nogrinfo -sql \"CREATE INDEX index_name ON table_name (column1, column2,columnN...)\" my_geopackage.gpkg\nAttention de ne pas créer des index multi-colonnes sauf si nécessaire.\n\n\nRetirer du contenu\nSi vous souhaitez retirer le bucket super_data, il vous suffit d’effacer tout son contenu à l’aide de la commande rm. Une fois le bucket vidé de son contenu, il disparaitra automatiquement de l’arborescence du catalogue.\ns5cmd rm \"s3://bq-io/acer/super_data/*\"\n\n\nRetirer du contenu\nVous pouvez également déplacer des fichiers d’un bucket à un autre en utilisant la commande cp.\ns5cmd cp \"s3://bq-io/acer/super_data/*\" s3://bq-io/acer/autre_super_data/\n\n\nRequête sur le fichier geoPackage\n\nurl de base https://object-arbutus.cloud.computecanada.ca/bq-io/\n\n\nutilisation de viscurl\n\n\n\nRessources\nCatalogue STAC IO\nExemples IO\nExemple utilisation Rstac & gdalcubes",
+    "crumbs": [
+      "Catalogues",
+      "Généralités",
+      "Manipulation des catalogues"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Support technique au développement",
+    "section": "",
+    "text": "Ce site a pour objectif de lister et de centraliser la documentation sur les outils développés par ou pour Biodiversité Québec.",
+    "crumbs": [
+      "Home",
+      "Support technique au développement"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_injections.html",
+    "href": "Rcoleo_injections.html",
+    "title": "Injections",
+    "section": "",
+    "text": "Repo Github\nCe tutoriel présente le processus pour injecter un jeu de données complet dans la base de données Coléo. L’exemple présenté est le même pour tout type d’inventaire ainsi que les cellules et sites.\nLe processus d’injection requiert des données saisies dans un gabarit d’injection et comprends trois étapes : (1) le chargement des données, (2) la validation des données et (3) l’injection des données. Ces étapes sont présentées dans les sections suivantes.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Injections"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_injections.html#formater-le-jeu-de-données",
+    "href": "Rcoleo_injections.html#formater-le-jeu-de-données",
+    "title": "Injections",
+    "section": "0. Formater le jeu de données",
+    "text": "0. Formater le jeu de données\nLes données doivent d’abord être saisies dans un gabarit. Les gabarits sont spécifiques à chaque inventaire.\nAccédez aux gabarits.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Injections"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_injections.html#charger-le-jeu-de-données",
+    "href": "Rcoleo_injections.html#charger-le-jeu-de-données",
+    "title": "Injections",
+    "section": "1. Charger le jeu de données",
+    "text": "1. Charger le jeu de données\nLa commande coleo_read est utilisée pour charger les données du gabarit excel. Elle charge et formate les données du gabarit en un dataframe qui est prêt à être injecté dans la base de données.\nNotez que l’injection de cellules requiert un shapefile plutôt que le gabarit Excel standard. Pour structurer et formater le fichier, veillez vous référer au gabarit d’injection de cellules.\ndata &lt;- coleo_read(fileName)\nLa commande coleo_read prend un argument fileName qui spécifie le chemin d’accès local vers le gabarit contenant les données.\nUne fois les données chargées, il faut les valider avant de lancer la procédure d’injection.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Injections"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_injections.html#valider-le-jeu-de-données",
+    "href": "Rcoleo_injections.html#valider-le-jeu-de-données",
+    "title": "Injections",
+    "section": "2. Valider le jeu de données",
+    "text": "2. Valider le jeu de données\nOn utilise la commande coleo_validate pour valider les données. Cette commande vérifie que les données sont dans le bon format et qu’elles sont complètes. Elle retourne un message d’erreur si les données contiennent une erreur.\nCertains inventaires sont injéectés avec des fichier médias. Dans ces cas, le chemin d’accès vers dossier contenant les médias à injecter doit être passé avec l’argument media_path.\ndata_validated &lt;- coleo_validate(data, media_path = NULL)\nIl est à noter que tous les jeux de données requierent que les cellules et les sites aient déjà été injectés. Le processus d’injection des cellules et sites suivent le même processus d’injection.",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Injections"
+    ]
+  },
+  {
+    "objectID": "Rcoleo_injections.html#injecter-les-données-téléversement",
+    "href": "Rcoleo_injections.html#injecter-les-données-téléversement",
+    "title": "Injections",
+    "section": "3. Injecter les données (téléversement)",
+    "text": "3. Injecter les données (téléversement)\nOn utilise la commande coleo_inject pour exécuter la procédure d’injectection des données dans la base de données Coléo. Cette commande retourne un message indiquant le nombre de lignes s’ayant injecté avec succès et erreur ainsi que le jeu de données initial avec les colonnes _id et _error pour chaque table injectée.\nL’argument media_path est requis lorsqu’il y a des fichiers médias à injecter. Il doit être le chemin local vers les fichiers médias à injecter.\ndata_injected &lt;- coelo_inject(data_validated, media_path = NULL)\nDes messages sont produits pour indiquer les données qui ont été injectées avec succès et celles qui ont échouées. Les données qui ont échoué peuvent être retrouvées dans l’objet data_injected puisqu’elles ont une valeur NULL dans la colonne *_id qui leur est associée.\nOn peut consulter les message d’erreur puisqu’ils sont sauvés dans la colonne *_error du dataframe data_injected.\nEn cas d’erreur, se référer à la personne ressource.\nC’EST TOUT !",
+    "crumbs": [
+      "Packages",
+      "rcoleo",
+      "Injections"
+    ]
+  }
+]
